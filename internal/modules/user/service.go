@@ -1,0 +1,48 @@
+package user
+
+import (
+	"context"
+
+	"github.com/dbunt1tled/fiber-go/pkg/storage"
+	"github.com/google/uuid"
+	"github.com/jackc/pgx/v5/pgxpool"
+)
+
+type Service struct {
+	userRepository *Repository
+}
+
+func NewUserService(pool *pgxpool.Pool) *Service {
+	return &Service{
+		userRepository: NewUserRepository(pool),
+	}
+}
+
+func (s *Service) FindByID(ctx context.Context, id uuid.UUID) (*User, error) {
+	return s.userRepository.FindByID(ctx, id)
+}
+
+func (s *Service) One(ctx context.Context, opts ...storage.QueryOption) (*User, error) {
+	return s.userRepository.One(ctx, opts...)
+}
+
+func (s *Service) List(ctx context.Context, opts ...storage.QueryOption) ([]*User, error) {
+	return s.userRepository.List(ctx, opts...)
+}
+
+func (s *Service) Paginate(
+	ctx context.Context,
+	page int,
+	perPage int,
+	opts ...storage.QueryOption,
+) (*storage.Paginator[*User], error) {
+	return s.userRepository.Paginate(ctx, page, perPage, opts...)
+}
+
+func (s *Service) Update(ctx context.Context, user *User) (*User, error) {
+	return s.userRepository.Update(ctx, user)
+}
+
+func (s *Service) Create(ctx context.Context, user *User) (*User, error) {
+	return s.userRepository.Insert(ctx, user)
+}
