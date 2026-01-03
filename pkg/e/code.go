@@ -37,6 +37,8 @@ const (
 const (
 	// 422 Unprocessable Entity errors.
 	_ = 42200000 + iota
+	Err422HomeTemplateError
+	Err422HomeTemplateExecuteError
 	Err422LoginValidateError
 	Err422LoginUserNotFoundError
 	Err422LoginAccessTokenError

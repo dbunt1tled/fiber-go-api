@@ -1,4 +1,4 @@
-package handler
+package middlewares
 
 import (
 	"github.com/dbunt1tled/fiber-go/pkg/e"

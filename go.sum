@@ -43,6 +43,12 @@ github.com/gofiber/fiber/v3 v3.0.0-rc.3 h1:h0KXuRHbivSslIpoHD1R/XjUsjcGwt+2vK0av
 github.com/gofiber/fiber/v3 v3.0.0-rc.3/go.mod h1:LNBPuS/rGoUFlOyy03fXsWAeWfdGoT1QytwjRVNSVWo=
 github.com/gofiber/schema v1.6.0 h1:rAgVDFwhndtC+hgV7Vu5ItQCn7eC2mBA4Eu1/ZTiEYY=
 github.com/gofiber/schema v1.6.0/go.mod h1:WNZWpQx8LlPSK7ZaX0OqOh+nQo/eW2OevsXs1VZfs/s=
+github.com/gofiber/template/html/v3 v3.0.1 h1:FUjyvi2GxFZY7+U6UHedW+MJ+PrZsaKR7t38KHIcKt0=
+github.com/gofiber/template/html/v3 v3.0.1/go.mod h1:hNTZsCu14MvU95Dshk3DExk66tfc16qYEj5fvZe+FyM=
+github.com/gofiber/template/v2 v2.0.0 h1:E+WPRsCNLxS2j3SsRU2sbqG2suD9dZMbDsv4NZF5tCg=
+github.com/gofiber/template/v2 v2.0.0/go.mod h1:n311woO10kG4/MZ35TTvbuoSEx+etErXBmu+0pFzQ1s=
+github.com/gofiber/template/v2 v2.1.0 h1:vrLY6uEW2HdioJm6J5FGUpYZuapVQhHciNz21XQjR/4=
+github.com/gofiber/template/v2 v2.1.0/go.mod h1:ohgpR/Ng90nJbK+IyNzrgR/XpnBNt862/oTF5G7SAmE=
 github.com/gofiber/utils/v2 v2.0.0-rc.5 h1:zosaA+j2jm9yhjuxGkFGWxILH8iL0iCoVYT6U/Qgej8=
 github.com/gofiber/utils/v2 v2.0.0-rc.5/go.mod h1:8PuWXERC3IoTmoD2Fp/X7amJntq928Fa2yTHI5Orj2M=
 github.com/golang-jwt/jwt/v5 v5.3.0 h1:pv4AsKCKKZuqlgs5sUmn4x8UlGa0kEVt/puTpKx9vvo=
@@ -126,6 +132,8 @@ github.com/stretchr/testify v1.11.1 h1:7s2iGBzp5EwR7/aIZr8ao5+dra3wiQyKjjFuvgVKu
 github.com/stretchr/testify v1.11.1/go.mod h1:wZwfW3scLgRK+23gO65QZefKpKQRnfz6sD981Nm4B6U=
 github.com/tinylib/msgp v1.6.2 h1:D40LN895O9HJpN8n5Ksqk+abl7zw6RtizDwgRCE7hXk=
 github.com/tinylib/msgp v1.6.2/go.mod h1:RSp0LW9oSxFut3KzESt5Voq4GVWyS+PSulT77roAqEA=
+github.com/tinylib/msgp v1.6.3 h1:bCSxiTz386UTgyT1i0MSCvdbWjVW+8sG3PjkGsZQt4s=
+github.com/tinylib/msgp v1.6.3/go.mod h1:RSp0LW9oSxFut3KzESt5Voq4GVWyS+PSulT77roAqEA=
 github.com/twitchyliquid64/golang-asm v0.15.1 h1:SU5vSMR7hnwNxj24w34ZyCi/FmDZTkS4MhqMhdFk5YI=
 github.com/twitchyliquid64/golang-asm v0.15.1/go.mod h1:a1lVb/DtPvCB8fslRZhAngC2+aY1QWCk3Cedj/Gdt08=
 github.com/valyala/bytebufferpool v1.0.0 h1:GqA5TC/0021Y/b9FG4Oi9Mr3q7XYx6KllzawFIhcdPw=

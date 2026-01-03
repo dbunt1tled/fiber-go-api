@@ -38,6 +38,8 @@ require (
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-viper/mapstructure/v2 v2.4.0 // indirect
 	github.com/gofiber/schema v1.6.0 // indirect
+	github.com/gofiber/template/html/v3 v3.0.1 // indirect
+	github.com/gofiber/template/v2 v2.1.0 // indirect
 	github.com/gofiber/utils/v2 v2.0.0-rc.5 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761 // indirect
@@ -55,7 +57,7 @@ require (
 	github.com/redis/go-redis/v9 v9.17.2 // indirect
 	github.com/robfig/cron/v3 v3.0.1 // indirect
 	github.com/spf13/cast v1.10.0 // indirect
-	github.com/tinylib/msgp v1.6.2 // indirect
+	github.com/tinylib/msgp v1.6.3 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.68.0 // indirect

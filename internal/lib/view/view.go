@@ -15,6 +15,7 @@ func MakeTemplateData(data map[string]any) map[string]any {
 	if !ok {
 		data["Locale"] = language.English.String()
 	}
+	data["AppStaticLink"] = fmt.Sprintf("%s/%s",config.Get().URL, config.Get().Static.URL)
 	data["AppStaticImageLink"] = fmt.Sprintf("%s/%s/%s",config.Get().URL, config.Get().Static.URL, "images")
 	data["AppLink"] = config.Get().URL
 	data["AppName"] = config.Get().Name

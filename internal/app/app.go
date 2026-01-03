@@ -30,6 +30,7 @@ import (
 	"github.com/gofiber/fiber/v3/middleware/pprof"
 	"github.com/gofiber/fiber/v3/middleware/recover"
 	"github.com/gofiber/fiber/v3/middleware/static"
+	"github.com/gofiber/template/html/v3"
 )
 
 type Application struct {
@@ -72,12 +73,15 @@ func NewApp(cfg *config.ServiceConfig) *Application {
 }
 
 func engineSetup() *fiber.App {
+	eng := html.New("./resources/templates", ".gohtml")
+
 	engine := fiber.New(fiber.Config{
 		JSONEncoder:  sonic.ConfigFastest.Marshal,
 		JSONDecoder:  sonic.ConfigFastest.Unmarshal,
 		ReadTimeout:  config.Get().Server.HTTP.Timeout,
 		WriteTimeout: config.Get().Server.HTTP.Timeout,
 		ErrorHandler: er.APIErrorHandler,
+		Views:        eng,
 	})
 
 	// Middleware setup

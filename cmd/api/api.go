@@ -4,10 +4,10 @@ import (
 	"context"
 
 	"github.com/dbunt1tled/fiber-go/internal/app"
-	"github.com/dbunt1tled/fiber-go/internal/app/handler"
 	"github.com/dbunt1tled/fiber-go/internal/app/routes"
 	"github.com/dbunt1tled/fiber-go/internal/config"
 	"github.com/dbunt1tled/fiber-go/pkg/db"
+	"github.com/dbunt1tled/fiber-go/pkg/http/middlewares"
 	"github.com/dbunt1tled/fiber-go/pkg/log"
 	"github.com/dbunt1tled/fiber-go/pkg/mailer"
 	"github.com/dbunt1tled/fiber-go/pkg/queue"
@@ -32,8 +32,9 @@ func main() {
 	consumer := queue.NewQueueConsumer(config.Get().Redis.Addr)
 	cfg := config.NewServiceConfig(database, mail, producer, consumer)
 	application := app.NewApp(cfg)
+	routes.WebRoutes(application)
 	routes.ApiRoutes(application)
-	application.Engine().Use(handler.NotFound)
+	application.Engine().Use(middlewares.NotFound)
 	err := application.Run(ctx)
 	if err != nil {
 		panic(err)

@@ -442,20 +442,16 @@ func (r *Repository[T]) applyRule(query *goqu.SelectDataset, rule Rule) *goqu.Se
 	case OpIsNotNull:
 		return query.Where(col.IsNotNull())
 	case OpContains:
-		// Array contains: column @> value
-		arrayValue := convertToArrayExpression(rule.Value)
-		return query.Where(goqu.L("? @> ?", col, arrayValue))
+		// Array contains: column @> ARRAY[val1, val2]::type[]
+		return query.Where(buildArrayCondition(rule.Field, "@>", rule.Value))
 	case OpContainedBy:
-		// Array contained by: column <@ value
-		arrayValue := convertToArrayExpression(rule.Value)
-		return query.Where(goqu.L("? <@ ?", col, arrayValue))
+		// Array contained by: column <@ ARRAY[val1, val2]::type[]
+		return query.Where(buildArrayCondition(rule.Field, "<@", rule.Value))
 	case OpOverlaps:
-		// Array overlaps: column && value
-		arrayValue := convertToArrayExpression(rule.Value)
-		return query.Where(goqu.L("? && ?", col, arrayValue))
+		// Array overlaps: column && ARRAY[val1, val2]::type[]
+		return query.Where(buildArrayCondition(rule.Field, "&&", rule.Value))
 	case OpJsonContains:
-		// JSONB contains: column @> value
-		// For JSONB, pass the value as-is (it should be json.RawMessage or string)
+		// JSONB contains: column @> value::jsonb
 		return query.Where(goqu.L("? @> ?::jsonb", col, rule.Value))
 	case OpJsonExists:
 		// JSONB key exists: column ? value
@@ -464,90 +460,61 @@ func (r *Repository[T]) applyRule(query *goqu.SelectDataset, rule Rule) *goqu.Se
 		return query
 	}
 }
-
-func convertToArrayExpression(value interface{}) goqu.Expression {
-	if value == nil {
-		return goqu.L("NULL")
-	}
-
-	rv := reflect.ValueOf(value)
-
-	// Handle already converted array expression
-	if expr, ok := value.(goqu.Expression); ok {
-		return expr
-	}
-
-	switch rv.Kind() {
-	case reflect.Slice, reflect.Array:
-		// Convert slice to properly typed array
-		length := rv.Len()
-		if length == 0 {
-			// Empty array - need to infer type
-			return goqu.L("ARRAY[]::text[]")
-		}
-
-		// Use ToPgArray for proper array formatting
-		switch v := value.(type) {
-		case []string:
-			return ToPgArray(v)
-		case []int:
-			return ToPgArray(v)
-		case []int64:
-			return ToPgArray(v)
-		case []uuid.UUID:
-			return ToPgArray(v)
-		case []interface{}:
-			// Try to convert []interface{} to typed slice
-			if length > 0 {
-				first := rv.Index(0).Interface()
-				switch first.(type) {
-				case string:
-					strSlice := make([]string, length)
-					for i := 0; i < length; i++ {
-						strSlice[i] = rv.Index(i).Interface().(string)
-					}
-					return ToPgArray(strSlice)
-				case int:
-					intSlice := make([]int, length)
-					for i := 0; i < length; i++ {
-						intSlice[i] = rv.Index(i).Interface().(int)
-					}
-					return ToPgArray(intSlice)
-				case int64:
-					int64Slice := make([]int64, length)
-					for i := 0; i < length; i++ {
-						int64Slice[i] = rv.Index(i).Interface().(int64)
-					}
-					return ToPgArray(int64Slice)
-				case uuid.UUID:
-					uuidSlice := make([]uuid.UUID, length)
-					for i := 0; i < length; i++ {
-						uuidSlice[i] = rv.Index(i).Interface().(uuid.UUID)
-					}
-					return ToPgArray(uuidSlice)
-				}
-			}
-		}
-
-		// Fallback: create array literal manually
-		values := make([]interface{}, length)
-		for i := 0; i < length; i++ {
-			values[i] = rv.Index(i).Interface()
-		}
-
-		placeholders := strings.Repeat("?,", length)
-		if len(placeholders) > 0 {
-			placeholders = placeholders[:len(placeholders)-1]
-		}
-
-		return goqu.L(fmt.Sprintf("ARRAY[%s]", placeholders), values...)
-
-	default:
-		// Single value - wrap in array
-		return goqu.L("ARRAY[?]", value)
-	}
+func escapeSingleQuote(s string) string {
+	return strings.ReplaceAll(s, "'", "''")
 }
 
+func ToPostgresArray(value interface{}) []interface{} {
+	rv := reflect.ValueOf(value)
+
+	switch rv.Kind() {
+	case reflect.Ptr:
+		if rv.IsNil() {
+			parts := make([]interface{}, 0)
+			return parts
+		}
+		rv = rv.Elem()
+		if rv.Kind() != reflect.Slice {
+			parts := make([]interface{}, 0)
+			return parts
+		}
+	case reflect.Slice:
+		// it is sliced
+	default:
+		parts := make([]interface{}, 0)
+		return parts
+	}
+
+	parts := make([]interface{}, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		parts[i] = rv.Index(i).Interface()
+	}
+
+	return parts
+}
+
+func buildArrayCondition(col string, operator string, value interface{}) goqu.Expression {
+	arr := ToPostgresArray(value)
+
+	length := len(arr)
+	if length == 0 {
+		arrayLiteral := fmt.Sprintf("? %s ARRAY[]::text[]", operator)
+		return goqu.L(arrayLiteral, goqu.C(col))
+	}
+	placeholders := make([]string, length)
+	for i := range placeholders {
+		placeholders[i] = "?"
+	}
+
+	pgType := inferPgType(arr[0])
+	arrayLiteral := fmt.Sprintf("\"%s\" %s ARRAY[%s]::%s[]",
+		col,
+		operator,
+		strings.Join(placeholders, ","),
+		pgType,
+	)
+	return goqu.L(arrayLiteral, arr...)
+}
 
 func ScanRowsWithScanner[T any](rows pgx.Rows, scanner func(pgx.Row) (T, error)) ([]T, error) {
 	var results []T

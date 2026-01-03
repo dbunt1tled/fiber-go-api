@@ -84,7 +84,7 @@ func (a *Controller) Register(c fiber.Ctx) error {
 		)
 	}
 
-	return a.JSON200(c, u)
+	return a.JSON200(c, user.NewUserResponse(u))
 }
 
 func (a *Controller) Confirm(c fiber.Ctx) error {
@@ -134,7 +134,7 @@ func (a *Controller) Confirm(c fiber.Ctx) error {
 		return e.NewUnprocessableEntityError("confirm user error", e.Err422TokenConfirmUserUpdateError)
 	}
 
-	return a.JSON200(c, u)
+	return a.JSON200(c, user.NewUserResponse(u))
 }
 
 func (a *Controller) Login(c fiber.Ctx) error {
@@ -183,10 +183,10 @@ func (a *Controller) Login(c fiber.Ctx) error {
 		)
 	}
 
-	return a.JSON200(c, map[string]interface{}{
-		"AccessToken":  access,
-		"RefreshToken": refresh,
-	})
+	return a.JSON200(c, NewLoginResponse(map[string]interface{}{
+		"accessToken":  access,
+		"refreshToken": refresh,
+	}))
 }
 
 func (a *Controller) Refresh(c fiber.Ctx) error {
@@ -226,8 +226,8 @@ func (a *Controller) Refresh(c fiber.Ctx) error {
 		)
 	}
 
-	return a.JSON200(c, map[string]interface{}{
-		"AccessToken":  access,
-		"RefreshToken": refresh,
-	})
+	return a.JSON200(c, NewLoginResponse(map[string]interface{}{
+		"accessToken":  access,
+		"refreshToken": refresh,
+	}))
 }
