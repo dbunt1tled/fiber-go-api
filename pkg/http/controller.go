@@ -3,8 +3,8 @@ package http
 import (
 	"net/http"
 
-	"github.com/dbunt1tled/fiber-go/pkg/e"
-	"github.com/dbunt1tled/fiber-go/pkg/http/dto"
+	"github.com/dbunt1tled/fiber-go-api/pkg/e"
+	"github.com/dbunt1tled/fiber-go-api/pkg/http/dto"
 	"github.com/gofiber/fiber/v3"
 
 	"github.com/go-playground/validator/v10"

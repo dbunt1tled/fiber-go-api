@@ -10,8 +10,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/dbunt1tled/fiber-go/pkg/log/logger"
-	"github.com/dbunt1tled/fiber-go/pkg/log/logger/handlers/slogpretty"
+	"github.com/dbunt1tled/fiber-go-api/pkg/log/logger"
+	"github.com/dbunt1tled/fiber-go-api/pkg/log/logger/handlers/slogpretty"
 	"github.com/natefinch/lumberjack/v3"
 )
 

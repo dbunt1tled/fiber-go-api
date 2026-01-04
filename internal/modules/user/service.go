@@ -3,7 +3,7 @@ package user
 import (
 	"context"
 
-	"github.com/dbunt1tled/fiber-go/pkg/storage"
+	"github.com/dbunt1tled/fiber-go-api/pkg/storage"
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgxpool"
 )

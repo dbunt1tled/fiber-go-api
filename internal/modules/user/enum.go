@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/bytedance/sonic"
-	"github.com/dbunt1tled/fiber-go/pkg/db/dbtype"
+	"github.com/dbunt1tled/fiber-go-api/pkg/db/dbtype"
 )
 
 type Status int

@@ -1,6 +1,6 @@
 package user
 
-import "github.com/dbunt1tled/fiber-go/pkg/http/dto"
+import "github.com/dbunt1tled/fiber-go-api/pkg/http/dto"
 
 type ListRequest struct {
 	dto.PaginationQuery

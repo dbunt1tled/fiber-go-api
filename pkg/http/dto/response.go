@@ -2,9 +2,9 @@ package dto
 
 import (
 	"github.com/bytedance/sonic"
-	"github.com/dbunt1tled/fiber-go/pkg/e"
-	"github.com/dbunt1tled/fiber-go/pkg/f"
-	"github.com/dbunt1tled/fiber-go/pkg/storage"
+	"github.com/dbunt1tled/fiber-go-api/pkg/e"
+	"github.com/dbunt1tled/fiber-go-api/pkg/f"
+	"github.com/dbunt1tled/fiber-go-api/pkg/storage"
 )
 
 type Document struct {

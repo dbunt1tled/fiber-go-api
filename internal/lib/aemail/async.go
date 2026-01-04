@@ -5,10 +5,10 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/dbunt1tled/fiber-go/internal/config"
-	"github.com/dbunt1tled/fiber-go/internal/lib/view"
-	"github.com/dbunt1tled/fiber-go/internal/modules/user"
-	"github.com/dbunt1tled/fiber-go/pkg/queue"
+	"github.com/dbunt1tled/fiber-go-api/internal/config"
+	"github.com/dbunt1tled/fiber-go-api/internal/lib/view"
+	"github.com/dbunt1tled/fiber-go-api/internal/modules/user"
+	"github.com/dbunt1tled/fiber-go-api/pkg/queue"
 )
 
 type MailServiceAsync struct {

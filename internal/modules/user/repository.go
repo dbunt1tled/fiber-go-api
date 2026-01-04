@@ -3,7 +3,7 @@ package user
 import (
 	"database/sql"
 
-	"github.com/dbunt1tled/fiber-go/pkg/storage"
+	"github.com/dbunt1tled/fiber-go-api/pkg/storage"
 	"github.com/doug-martin/goqu/v9"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"

@@ -1,9 +1,9 @@
 package config
 
 import (
-	"github.com/dbunt1tled/fiber-go/pkg/db"
-	"github.com/dbunt1tled/fiber-go/pkg/mailer"
-	"github.com/dbunt1tled/fiber-go/pkg/queue"
+	"github.com/dbunt1tled/fiber-go-api/pkg/db"
+	"github.com/dbunt1tled/fiber-go-api/pkg/mailer"
+	"github.com/dbunt1tled/fiber-go-api/pkg/queue"
 )
 
 type ServiceConfig struct {

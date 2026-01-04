@@ -4,10 +4,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/dbunt1tled/fiber-go/internal/config"
-	"github.com/dbunt1tled/fiber-go/internal/modules/user"
-	"github.com/dbunt1tled/fiber-go/pkg/e"
-	"github.com/dbunt1tled/fiber-go/pkg/hasher"
+	"github.com/dbunt1tled/fiber-go-api/internal/config"
+	"github.com/dbunt1tled/fiber-go-api/internal/modules/user"
+	"github.com/dbunt1tled/fiber-go-api/pkg/e"
+	"github.com/dbunt1tled/fiber-go-api/pkg/hasher"
 )
 
 const BearerSchema = "Bearer "

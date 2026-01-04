@@ -1,7 +1,7 @@
 package auth
 
 import (
-	"github.com/dbunt1tled/fiber-go/pkg/http/dto"
+	"github.com/dbunt1tled/fiber-go-api/pkg/http/dto"
 )
 
 func NewLoginResource(data map[string]interface{}) *dto.Resource {

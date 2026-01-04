@@ -3,7 +3,7 @@ package auth
 import (
 	"time"
 
-	"github.com/dbunt1tled/fiber-go/internal/modules/user"
+	"github.com/dbunt1tled/fiber-go-api/internal/modules/user"
 )
 
 type Login struct {

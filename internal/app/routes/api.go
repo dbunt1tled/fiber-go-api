@@ -3,8 +3,8 @@ package routes
 import (
 	"fmt"
 
-	"github.com/dbunt1tled/fiber-go/internal/app"
-	"github.com/dbunt1tled/fiber-go/internal/config"
+	"github.com/dbunt1tled/fiber-go-api/internal/app"
+	"github.com/dbunt1tled/fiber-go-api/internal/config"
 	"github.com/gofiber/fiber/v3"
 )
 

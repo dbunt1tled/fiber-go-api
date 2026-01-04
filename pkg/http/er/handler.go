@@ -4,10 +4,10 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/dbunt1tled/fiber-go/pkg/e"
-	"github.com/dbunt1tled/fiber-go/pkg/http/dto"
-	"github.com/dbunt1tled/fiber-go/pkg/log"
-	"github.com/dbunt1tled/fiber-go/pkg/validation"
+	"github.com/dbunt1tled/fiber-go-api/pkg/e"
+	"github.com/dbunt1tled/fiber-go-api/pkg/http/dto"
+	"github.com/dbunt1tled/fiber-go-api/pkg/log"
+	"github.com/dbunt1tled/fiber-go-api/pkg/validation"
 	"github.com/gofiber/fiber/v3"
 )
 

@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/dbunt1tled/fiber-go/pkg/e"
-	"github.com/dbunt1tled/fiber-go/pkg/validation/validators"
+	"github.com/dbunt1tled/fiber-go-api/pkg/e"
+	"github.com/dbunt1tled/fiber-go-api/pkg/validation/validators"
 	"github.com/go-playground/validator/v10"
 	"github.com/jackc/pgx/v5/pgxpool"
 )

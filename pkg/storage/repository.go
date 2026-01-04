@@ -7,7 +7,7 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/dbunt1tled/fiber-go/pkg/f"
+	"github.com/dbunt1tled/fiber-go-api/pkg/f"
 	"github.com/doug-martin/goqu/v9"
 	_ "github.com/doug-martin/goqu/v9/dialect/postgres"
 	"github.com/google/uuid"

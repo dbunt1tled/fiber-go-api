@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/dbunt1tled/fiber-go/pkg/e"
-	"github.com/dbunt1tled/fiber-go/pkg/log"
+	"github.com/dbunt1tled/fiber-go-api/pkg/e"
+	"github.com/dbunt1tled/fiber-go-api/pkg/log"
 	"github.com/gofiber/fiber/v3"
 )
 

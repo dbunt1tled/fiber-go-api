@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log/slog"
 
-	"github.com/dbunt1tled/fiber-go/pkg/log"
+	"github.com/dbunt1tled/fiber-go-api/pkg/log"
 	"github.com/hibiken/asynq"
 )
 

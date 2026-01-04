@@ -3,7 +3,7 @@ package email
 import (
 	"context"
 
-	"github.com/dbunt1tled/fiber-go/pkg/mailer"
+	"github.com/dbunt1tled/fiber-go-api/pkg/mailer"
 	"github.com/wneessen/go-mail"
 )
 

@@ -2,6 +2,13 @@
 
 ![FiberAPIgo](assets/images/fiber_go.png)
 
+[![Go Version](https://img.shields.io/github/go-mod/go-version/dbunt1tled/fiber-go-api)](https://golang.org/)
+[![Go Reference](https://pkg.go.dev/badge/github.com/dbunt1tled/fiber-go-api.svg)](https://pkg.go.dev/github.com/dbunt1tled/fiber-go-api)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Go Report Card](https://goreportcard.com/badge/github.com/dbunt1tled/fiber-go-api)](https://goreportcard.com/report/github.com/dbunt1tled/fiber-go-api)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/dbunt1tled/fiber-go-api)](https://github.com/dbunt1tled/fiber-go-api/releases)
+[![Build Status](https://github.com/dbunt1tled/fiber-go-api/actions/workflows/release.yml/badge.svg)](https://github.com/dbunt1tled/fiber-go-api/actions/workflows/release.yml)
+
 A modern, modular Go web application boilerplate built with [Fiber v3](https://docs.gofiber.io/). It features a repository pattern, structured logging, background task processing, and a robust validation system.
 
 ## 🚀 Features

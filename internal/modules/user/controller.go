@@ -1,9 +1,9 @@
 package user
 
 import (
-	"github.com/dbunt1tled/fiber-go/pkg/e"
-	"github.com/dbunt1tled/fiber-go/pkg/http"
-	"github.com/dbunt1tled/fiber-go/pkg/storage"
+	"github.com/dbunt1tled/fiber-go-api/pkg/e"
+	"github.com/dbunt1tled/fiber-go-api/pkg/http"
+	"github.com/dbunt1tled/fiber-go-api/pkg/storage"
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v3"
 )

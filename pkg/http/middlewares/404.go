@@ -1,7 +1,7 @@
 package middlewares
 
 import (
-	"github.com/dbunt1tled/fiber-go/pkg/e"
+	"github.com/dbunt1tled/fiber-go-api/pkg/e"
 	"github.com/gofiber/fiber/v3"
 )
 

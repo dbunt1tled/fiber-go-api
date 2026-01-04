@@ -1,8 +1,8 @@
 package user
 
 import (
-	"github.com/dbunt1tled/fiber-go/pkg/http/dto"
-	"github.com/dbunt1tled/fiber-go/pkg/storage"
+	"github.com/dbunt1tled/fiber-go-api/pkg/http/dto"
+	"github.com/dbunt1tled/fiber-go-api/pkg/storage"
 )
 
 func NewUserResource(u *User) *dto.Resource {

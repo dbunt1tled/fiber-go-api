@@ -1,10 +1,10 @@
 package middlewares
 
 import (
-	"github.com/dbunt1tled/fiber-go/internal/modules/auth"
-	"github.com/dbunt1tled/fiber-go/internal/modules/user"
-	"github.com/dbunt1tled/fiber-go/pkg/e"
-	"github.com/dbunt1tled/fiber-go/pkg/hasher"
+	"github.com/dbunt1tled/fiber-go-api/internal/modules/auth"
+	"github.com/dbunt1tled/fiber-go-api/internal/modules/user"
+	"github.com/dbunt1tled/fiber-go-api/pkg/e"
+	"github.com/dbunt1tled/fiber-go-api/pkg/hasher"
 	"github.com/gofiber/fiber/v3"
 	"github.com/google/uuid"
 )

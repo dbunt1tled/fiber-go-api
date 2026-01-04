@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/bytedance/sonic"
-	"github.com/dbunt1tled/fiber-go/internal/lib/email"
-	"github.com/dbunt1tled/fiber-go/pkg/log"
+	"github.com/dbunt1tled/fiber-go-api/internal/lib/email"
+	"github.com/dbunt1tled/fiber-go-api/pkg/log"
 	"github.com/hibiken/asynq"
 )
 

@@ -5,18 +5,17 @@ import (
 	"html/template"
 	"time"
 
-	"github.com/dbunt1tled/fiber-go/internal/config"
+	"github.com/dbunt1tled/fiber-go-api/internal/config"
 	"golang.org/x/text/language"
 )
-
 
 func MakeTemplateData(data map[string]any) map[string]any {
 	_, ok := data["Locale"]
 	if !ok {
 		data["Locale"] = language.English.String()
 	}
-	data["AppStaticLink"] = fmt.Sprintf("%s/%s",config.Get().URL, config.Get().Static.URL)
-	data["AppStaticImageLink"] = fmt.Sprintf("%s/%s/%s",config.Get().URL, config.Get().Static.URL, "images")
+	data["AppStaticLink"] = fmt.Sprintf("%s/%s", config.Get().URL, config.Get().Static.URL)
+	data["AppStaticImageLink"] = fmt.Sprintf("%s/%s/%s", config.Get().URL, config.Get().Static.URL, "images")
 	data["AppLink"] = config.Get().URL
 	data["AppName"] = config.Get().Name
 	data["Year"] = time.Now().UTC().Year()

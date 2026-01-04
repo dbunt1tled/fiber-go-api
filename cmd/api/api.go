@@ -3,14 +3,14 @@ package main
 import (
 	"context"
 
-	"github.com/dbunt1tled/fiber-go/internal/app"
-	"github.com/dbunt1tled/fiber-go/internal/app/routes"
-	"github.com/dbunt1tled/fiber-go/internal/config"
-	"github.com/dbunt1tled/fiber-go/pkg/db"
-	"github.com/dbunt1tled/fiber-go/pkg/http/middlewares"
-	"github.com/dbunt1tled/fiber-go/pkg/log"
-	"github.com/dbunt1tled/fiber-go/pkg/mailer"
-	"github.com/dbunt1tled/fiber-go/pkg/queue"
+	"github.com/dbunt1tled/fiber-go-api/internal/app"
+	"github.com/dbunt1tled/fiber-go-api/internal/app/routes"
+	"github.com/dbunt1tled/fiber-go-api/internal/config"
+	"github.com/dbunt1tled/fiber-go-api/pkg/db"
+	"github.com/dbunt1tled/fiber-go-api/pkg/http/middlewares"
+	"github.com/dbunt1tled/fiber-go-api/pkg/log"
+	"github.com/dbunt1tled/fiber-go-api/pkg/mailer"
+	"github.com/dbunt1tled/fiber-go-api/pkg/queue"
 )
 
 func main() {
