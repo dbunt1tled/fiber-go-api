@@ -1,5 +1,7 @@
 # Fiber Go Boilerplate
 
+![FiberAPIgo](assets/images/fiber_go.png)
+
 A modern, modular Go web application boilerplate built with [Fiber v3](https://docs.gofiber.io/). It features a repository pattern, structured logging, background task processing, and a robust validation system.
 
 ## 🚀 Features
