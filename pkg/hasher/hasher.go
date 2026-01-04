@@ -275,7 +275,6 @@ func (h *Hasher) DecodeJWT(token string, opts ...DecodeOpt) (map[string]interfac
 		}
 	}
 
-
 	return claims, nil
 }
 
