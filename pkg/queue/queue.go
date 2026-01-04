@@ -42,6 +42,7 @@ func NewQueueMux(
 	emailHandler *EmailHandler,
 ) *asynq.ServeMux {
 	mux := asynq.NewServeMux()
+	mux.Use(loggingMiddleware)
 	mux.HandleFunc(EmailSendTask, emailHandler.SendEmailHandler)
 
 	return mux
