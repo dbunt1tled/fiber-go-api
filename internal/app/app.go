@@ -76,12 +76,35 @@ func engineSetup() *fiber.App {
 	eng := html.New("./resources/templates", ".gohtml")
 
 	engine := fiber.New(fiber.Config{
-		JSONEncoder:  sonic.ConfigFastest.Marshal,
-		JSONDecoder:  sonic.ConfigFastest.Unmarshal,
-		ReadTimeout:  config.Get().Server.HTTP.Timeout,
-		WriteTimeout: config.Get().Server.HTTP.Timeout,
-		ErrorHandler: er.APIErrorHandler,
-		Views:        eng,
+		AppName:       config.Get().Name,
+		ServerHeader:  config.Get().Name,
+		CaseSensitive: true,
+		StrictRouting: true,
+		BodyLimit:     config.Get().Server.HTTP.BodyLimit,
+		JSONEncoder:   sonic.ConfigFastest.Marshal,
+		JSONDecoder:   sonic.ConfigFastest.Unmarshal,
+		ReadTimeout:   config.Get().Server.HTTP.Timeout,
+		WriteTimeout:  config.Get().Server.HTTP.Timeout,
+		ErrorHandler:  er.APIErrorHandler,
+		Views:         eng,
+	})
+
+	engine.Hooks().OnPreStartupMessage(func(sm *fiber.PreStartupMessageData) error {
+		sm.BannerHeader = "FOOBER " + sm.Version + "\n-------"
+
+		// Optional: you can also remove old entries
+		// sm.ResetEntries()
+
+		sm.AddInfo("git-hash", "Git hash", "111111")
+		sm.AddInfo("prefork", "Prefork", fmt.Sprintf("%v", sm.Prefork), 15)
+		return nil
+	})
+
+	engine.Hooks().OnPostStartupMessage(func(sm *fiber.PostStartupMessageData) error {
+		if !sm.Disabled && !sm.IsChild && !sm.Prevented {
+			fmt.Println("startup completed")
+		}
+		return nil
 	})
 
 	// Middleware setup
@@ -150,10 +173,20 @@ func (a *Application) serveWithGraceFullShutdown(ctx context.Context, addr strin
 	go func() {
 		if err := a.engine.Listen(addr, fiber.ListenConfig{
 			EnablePrefork: config.Get().Server.HTTP.Prefork,
+			CertFile:      config.Get().Server.HTTP.TLS.CertFile,
+			CertKeyFile:   config.Get().Server.HTTP.TLS.Keyfile,
 		}); err != nil {
 			panic(err)
 		}
 	}()
+	a.engine.Hooks().OnPostShutdown(func(err error) error {
+		if err != nil {
+			log.Logger().Errorf("Shutdown error: %v", err)
+		} else {
+			log.Logger().Infof("Shutdown successful")
+		}
+		return nil
+	})
 	<-c.Done()
 	var cancel context.CancelFunc
 	c, cancel = context.WithTimeout(context.Background(), 10*time.Second) //nolint:mnd // 10 seconds timeout

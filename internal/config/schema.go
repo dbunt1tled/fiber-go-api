@@ -24,11 +24,18 @@ type ServerConfig struct {
 }
 
 type HTTPConfig struct {
-	Host    string        `koanf:"host"`
-	Port    int           `koanf:"port"`
-	Timeout time.Duration `koanf:"timeout"`
-	Prefork bool          `koanf:"prefork"`
-	CORS    CORSConfig    `koanf:"cors"`
+	Host      string        `koanf:"host"`
+	Port      int           `koanf:"port"`
+	Timeout   time.Duration `koanf:"timeout"`
+	Prefork   bool          `koanf:"prefork"`
+	CORS      CORSConfig    `koanf:"cors"`
+	BodyLimit int           `koanf:"bodylimit"`
+	TLS       TLSConfig     `koanf:"tls"`
+}
+
+type TLSConfig struct {
+	Keyfile  string `koanf:"keyfile"`
+	CertFile string `koanf:"certfile"`
 }
 
 type JWTConfig struct {

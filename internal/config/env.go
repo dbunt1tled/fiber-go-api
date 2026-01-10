@@ -36,12 +36,13 @@ func load() error {
 	k := koanf.New(".")
 
 	if err := k.Load(confmap.Provider(map[string]interface{}{
-		"name":                "fiber-api",
-		"env":                 "develop",
-		"debug":               false,
-		"server.http.host":    "localhost",
-		"server.http.port":    8080, //nolint:mnd // default port
-		"server.http.timeout": "5s",
+		"name":                  "fiber-api",
+		"env":                   "develop",
+		"debug":                 false,
+		"server.http.host":      "localhost",
+		"server.http.port":      8080, //nolint:mnd // default port
+		"server.http.timeout":   "5s",
+		"server.http.bodylimit": 4 * 1024 * 1024, //nolint:mnd // 4MB
 	}, "."), nil); err != nil {
 		return fmt.Errorf("error loading confmap: %w", err)
 	}
