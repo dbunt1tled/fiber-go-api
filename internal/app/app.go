@@ -91,7 +91,7 @@ func engineSetup() *fiber.App {
 	}))
 	engine.Use(helmet.New())
 	engine.Use(compress.New())
-	if config.Get().Debug {
+	if config.Get().Profiling {
 		engine.Use(pprof.New())
 	}
 	engine.Use(cors.New(cors.Config{

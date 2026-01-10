@@ -6,16 +6,17 @@ import (
 )
 
 type Config struct {
-	Name   string       `koanf:"name"`
-	URL    string       `koanf:"url"`
-	Env    string       `koanf:"env"`
-	Debug  bool         `koanf:"debug"`
-	Server ServerConfig `koanf:"server"`
-	DB     DBConfig     `koanf:"db"`
-	Redis  RedisConfig  `koanf:"redis"`
-	Log    LogConfig    `koanf:"log"`
-	Mailer MailerConfig `koanf:"mailer"`
-	Static StaticConfig `koanf:"static"`
+	Name      string       `koanf:"name"`
+	URL       string       `koanf:"url"`
+	Env       string       `koanf:"env"`
+	Debug     bool         `koanf:"debug"`
+	Profiling bool         `koanf:"profiling"`
+	Server    ServerConfig `koanf:"server"`
+	DB        DBConfig     `koanf:"db"`
+	Redis     RedisConfig  `koanf:"redis"`
+	Log       LogConfig    `koanf:"log"`
+	Mailer    MailerConfig `koanf:"mailer"`
+	Static    StaticConfig `koanf:"static"`
 }
 type ServerConfig struct {
 	HTTP HTTPConfig `koanf:"http"`

@@ -4,6 +4,7 @@ import (
 	"errors"
 	"net/http"
 
+	"github.com/dbunt1tled/fiber-go-api/internal/config"
 	"github.com/dbunt1tled/fiber-go-api/pkg/e"
 	"github.com/dbunt1tled/fiber-go-api/pkg/http/dto"
 	"github.com/dbunt1tled/fiber-go-api/pkg/log"
@@ -37,8 +38,14 @@ func APIErrorHandler(ctx fiber.Ctx, err error) error {
 			Errors: vErr,
 		})
 	}
+	log.Logger().ErrorWithStack(message, err)
+	if config.Get().Debug {
+		stack := e.GetErrTrace(err)
+		return ctx.Status(status).JSON(dto.Document{
+			Errors: []e.ErrNo{{Status: status, Msg: message, Code: code, Stack: stack}},
+		})
+	}
 
-	log.Logger().Error(message, err)
 	return ctx.Status(status).JSON(dto.Document{
 		Errors: []e.ErrNo{{Status: status, Msg: message, Code: code}},
 	})

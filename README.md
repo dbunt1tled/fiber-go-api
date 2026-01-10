@@ -123,10 +123,6 @@ Available `make` commands:
 - `make migrate_status`: Show current migration status.
 - `MIGRATION_NAME=name make migration_sql`: Create a new SQL migration.
 
-## 🧪 Testing
-
-You can test the API endpoints using the provided `app.http` file with an IDE-integrated REST client (like in IntelliJ IDEA or VS Code).
-
 ## 📄 License
 
 This project is licensed under the [MIT License](LICENSE).

@@ -3,23 +3,42 @@ package e
 import (
 	"fmt"
 	"net/http"
+
+	"github.com/pkg/errors"
 )
 
 type ErrNo struct {
-	Msg    string `json:"message"`
-	Code   int    `json:"code"`
-	Status int    `json:"status"`
+	Msg    string  `json:"message"`
+	Code   int     `json:"code"`
+	Status int     `json:"status"`
+	Stack  *string `json:"stack,omitempty"`
+	stack  errors.StackTrace
 }
 
 type HTTPError interface {
 	Error() string
 }
 
-func NewErrNo(msg string, code int, status int) *ErrNo {
+type StackTracer interface {
+	StackTrace() errors.StackTrace
+	Error() string
+}
+
+func NewErrNo(msg string, code int, status int) error {
+	base := &ErrNo{
+		Msg:    msg,
+		Code:   code,
+		Status: status,
+	}
+	return errors.WithStack(base)
+}
+
+func NewErrNoWithStack(msg string, code int, status int, stack *string) *ErrNo {
 	return &ErrNo{
 		Msg:    msg,
 		Code:   code,
 		Status: status,
+		Stack:  stack,
 	}
 }
 
@@ -63,4 +82,16 @@ func NewUnprocessableEntityErrorWrap(msg string, code int, e error) HTTPError {
 
 func (e ErrNo) Error() string {
 	return e.Msg
+}
+
+func GetErrTrace(err error) *string {
+	var er StackTracer
+	if errors.As(err, &er) {
+		stack := ""
+		for _, f := range er.StackTrace() {
+			stack += fmt.Sprintf("%+s:%d\n", f, f)
+		}
+		return &stack
+	}
+	return nil
 }
